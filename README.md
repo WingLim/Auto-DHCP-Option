@@ -1,6 +1,9 @@
 # Auto-DHCP-Option
 
+A script to auto set Main Router's dhcp_option.
+
 ## Introduction
+
 In our lan network, we have two router:
 
 1. Main Router: Handle devices connect to Internet normally.
@@ -20,7 +23,7 @@ We can set `dhcp_option` in Main Router's DHCP Server like this:
 
 `3` means Gateway's IP and `6` means DNS Server's IP.
 
-But there is an problem: If our Side Router down, we can't connect to Internet.
+But there is an problem: **If our Side Router down, we can't connect to Internet.**
 
 So, I write this script to check if Side Router status, if it is down, remove `dhcp_option`, and manually reconnect devices to Main Router.
 
