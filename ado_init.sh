@@ -9,8 +9,8 @@ case $action in
             echo "Missing argument: siderouter ip"
             exit
         fi
-        mkdir -p /root/siderouter_manager
-        cat > /root/siderouter_manager/check_status.sh <<EOF
+        mkdir -p /root/auto_dhcp_option
+        cat > /root/auto_dhcp_option/check_status.sh <<EOF
 #!/bin/env sh
 
 siderouter="$siderouter_ip"
@@ -41,11 +41,11 @@ else
     restart_dnsmasq
 fi
 EOF
-        echo "* */10 * * * /root/siderouter_manager/check_status.sh" >> /etc/crontabs/root
+        echo "* */10 * * * /root/auto_dhcp_option/check_status.sh" >> /etc/crontabs/root
     ;;
     "remove")
-        sed -i "/\* \*\/10 \* \* \* \/root\/siderouter_manager\/check_status.sh/d" /etc/crontabs/root
-        rm -r /root/siderouter_manager
+        sed -i "/\* \*\/10 \* \* \* \/root\/auto_dhcp_option\/check_status.sh/d" /etc/crontabs/root
+        rm -r /root/auto_dhcp_option
         /etc/init.d/dnsmasq reload
     ;;
     *)
