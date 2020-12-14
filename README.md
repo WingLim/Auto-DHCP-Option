@@ -44,3 +44,7 @@ Add a cron to execu `check_status.sh` every 10 mins.
 ```shell
 sh ado_init.sh remove
 ```
+
+## License
+
+MIT
