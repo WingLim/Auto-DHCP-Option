@@ -4,34 +4,23 @@ A script to auto set Main Router's dhcp_option.
 
 ## Introduction
 
-In our lan network, we have two router:
+Our network topology:
 
-1. Main Router: Handle devices connect to Internet normally.
-
-2. Side Router: Filter ads, get fastest dns record(by Smart DNS), go throw the GFW etc.
-
-To make Side Router work, we need to set it as Gateway.
-
-Fortunately, we don't need to set it manually. When devices send request to DHCP Server to get an IP, Main Router will return IP, Gateway and DNS Server.
-
-We can set `dhcp_option` in Main Router's DHCP Server like this:
-
-```config
-3,192.168.1.2
-6,192.168.1.2
-```
+![Main&Side Router](images/Main&Side%20Router.png)
 
 `3` means Gateway's IP and `6` means DNS Server's IP.
 
 But there is an problem: **If our Side Router down, we can't connect to Internet.**
 
-So, I write this script to check if Side Router status, if it is down, remove `dhcp_option`, and manually reconnect devices to Main Router.
+So, this script will check Side Router status, if it is down, remove `dhcp_option`.
 
-With that we can use Internet normally, and take some times to fix our Side Router.
+If Side Router is down, we can manually reconnect devices to Main Router, and use Internet normally.
 
 ## Usage
 
 ### Install
+
+Run below command in **Main Router**.
 
 ```shell
 wget https://raw.githubusercontent.com/WingLim/dotfiles/Auto-DHCP-Option/ado_init.sh
